@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DetailController!{% endblock %}
+
+{% block body %}
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Détail du pokémon </h1>
+            <p>Nom : {{ nomPokemon}}</p>
+            <p>Xp : {{ xpPokemon}}</p>
+            <p>Sexe : {{ sexePokemon}}</p>
+            <p>Niveau : {{ niveauPokemon}}</p>
+            <p>Dernier entrainement : {{ entrainementPokemon}}</p>
+            <p>Dernière date de chasse : {{ chassePokemon}}</p>
+            <p>En vente : {{ ventePokemon}}</p>
+         
+
+            {% if entrainementPossible %}
+                       <button><a href={{  path('app_detail', {'id_pokemon' : idPokemon,'entrainement' : "oui"})}}> entrainement </a> </button>
+                       {% else %}
+                       <p>Vous ne pouvez pas encore entrainer ce pokemon, revenez plus tard</p>
+
+{% endif %}
+ 
+
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}PokeDex !{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,30 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Bienvenue sur PokeDex !</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Applications/MAMP/htdocs/pokefony/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Applications/MAMP/htdocs/pokefony/templates/main/index.html.twig'|file_link(0) }}">templates/main/index.html.twig</a></code></li>
-    </ul>
+      {% if app.user %}
+        <div class="mb-3">
+            Bienvenu  {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+        </div>
+
+    <a href="{{ path('app_training', {'id_user' : app.user.id}) }}"> entrainement </a>
+    <br>
+    <a href="{{ path('app_trading') }}"> Marché </a>
+    <br>
+    <a href="{{ path('app_capture') }}"> Chasse </a>
+    
+
+    {% else %}
+
+
+
+    <a href="{{ path('app_login') }}"> Se connecter </a>
+    <br>
+    <a href="{{ path('app_register') }}"> S'inscrire </a>
+    <br>
+    
+    {% endif %}
+ 
 </div>
 {% endblock %}

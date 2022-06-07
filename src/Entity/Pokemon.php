@@ -5,7 +5,11 @@ namespace App\Entity;
 use App\Repository\PokemonRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use ApiPlatform\Core\Annotation\ApiResource;
+
 #[ORM\Entity(repositoryClass: PokemonRepository::class)]
+#[ApiResource]
+
 class Pokemon
 {
     #[ORM\Id]
@@ -13,82 +17,142 @@ class Pokemon
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 50)]
-    private $name;
-
-    #[ORM\Column(type: 'smallint')]
-    private $evolution;
-
-    #[ORM\Column(type: 'smallint')]
-    private $starter;
-
-    #[ORM\Column(type: 'string', length: 1)]
-    private $typeCourbeNiveau;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $nom;
 
     #[ORM\Column(type: 'integer')]
-    private $type1;
+    private $xp;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $sexe;
+
+    #[ORM\ManyToOne(targetEntity: EspecePokemon::class)]
+    private $espece;
+
+    #[ORM\Column(type: 'datetime', nullable:true)]
+    private $entrainement;
+
+    #[ORM\Column(type: 'boolean')]
+    private $chasse;
+
+    #[ORM\Column(type: 'datetime', nullable:true)]
+    private $date_chasse;
+
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    private $dresseur;
+
+    #[ORM\Column(type: 'integer')]
+    private $niveau;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getNom(): ?string
     {
-        return $this->name;
+        return $this->nom;
     }
 
-    public function setName(string $name): self
+    public function setNom(string $nom): self
     {
-        $this->name = $name;
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function getEvolution(): ?int
+    public function getXp(): ?int
     {
-        return $this->evolution;
+        return $this->xp;
     }
 
-    public function setEvolution(int $evolution): self
+    public function setXp(int $xp): self
     {
-        $this->evolution = $evolution;
+        $this->xp = $xp;
 
         return $this;
     }
 
-    public function getStarter(): ?int
+    public function getSexe(): ?string
     {
-        return $this->starter;
+        return $this->sexe;
     }
 
-    public function setStarter(int $starter): self
+    public function setSexe(string $sexe): self
     {
-        $this->starter = $starter;
+        $this->sexe = $sexe;
 
         return $this;
     }
 
-    public function getTypeCourbeNiveau(): ?string
+    public function getEspece(): ?EspecePokemon
     {
-        return $this->typeCourbeNiveau;
+        return $this->espece;
     }
 
-    public function setTypeCourbeNiveau(string $typeCourbeNiveau): self
+    public function setEspece(?EspecePokemon $espece): self
     {
-        $this->typeCourbeNiveau = $typeCourbeNiveau;
+        $this->espece = $espece;
 
         return $this;
     }
 
-    public function getType1(): ?int
+    public function getEntrainement(): ?\DateTimeInterface
     {
-        return $this->type1;
+        return $this->entrainement;
     }
 
-    public function setType1(int $type1): self
+    public function setEntrainement(\DateTimeInterface $entrainement): self
     {
-        $this->type1 = $type1;
+        $this->entrainement = $entrainement;
+
+        return $this;
+    }
+
+    public function getChasse(): ?bool
+    {
+        return $this->chasse;
+    }
+
+    public function setChasse(bool $chasse): self
+    {
+        $this->chasse = $chasse;
+
+        return $this;
+    }
+
+    public function getDateChasse(): ?\DateTimeInterface
+    {
+        return $this->date_chasse;
+    }
+
+    public function setDateChasse(\DateTimeInterface $date_chasse): self
+    {
+        $this->date_chasse = $date_chasse;
+
+        return $this;
+    }
+
+    public function getDresseur(): ?User
+    {
+        return $this->dresseur;
+    }
+
+    public function setDresseur(?User $dresseur): self
+    {
+        $this->dresseur = $dresseur;
+
+        return $this;
+    }
+
+    public function getNiveau(): ?int
+    {
+        return $this->niveau;
+    }
+
+    public function setNiveau(int $niveau): self
+    {
+        $this->niveau = $niveau;
 
         return $this;
     }
