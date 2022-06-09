@@ -1,6 +1,4 @@
-remote_theme: mmistakes/minimal-mistakes
-minimal_mistakes_skin: "sunrise"
-
+remote_theme:  alshedivat/al-folio
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
