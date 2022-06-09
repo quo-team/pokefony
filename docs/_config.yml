@@ -6,3 +6,4 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+logo: logo-pok.png
