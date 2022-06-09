@@ -24,3 +24,9 @@ Introverti
 
 Introverti 
 {: .label .label-green }
+
+Introverti 
+{: .label .label-red }
+
+Introverti 
+{: .label .label-yellow }
