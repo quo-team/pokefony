@@ -7,3 +7,6 @@ plugins:
   - jemoji
   - jekyll-include-cache
 logo: logo-p-big.png
+collections:
+  home
+  pitch
