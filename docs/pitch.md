@@ -1,3 +1,7 @@
+---
+nav_order : 2
+---
+
 # Elevator Pitch
 <!-- En quoi ce projet mériterait-il notre attention? -->
 

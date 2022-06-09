@@ -1,3 +1,7 @@
+---
+nav_order : 2
+---
+
 # Home
 Un jeu par Raphaël Pilleux, Daoud Mouhoum, Julien Hue et Ryan Danion
 
