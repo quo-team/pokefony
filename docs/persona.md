@@ -19,6 +19,8 @@ Kevin commence à avoir le droit de se connecter à Internet. Ses parents lui on
 
 ### Personnalité
 
+Test
+
 Introverti 
 {: .label .label-blue }
 
