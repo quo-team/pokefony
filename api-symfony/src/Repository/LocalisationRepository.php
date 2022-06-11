@@ -47,6 +47,15 @@ class LocalisationRepository extends ServiceEntityRepository
         }
     }
 
+    public function getAllLocalisation (){
+
+     
+        return $this->createQueryBuilder('l')
+                   ->getQuery()
+                    ->getResult()
+                ;
+    }
+
 //    /**
 //     * @return Localisation[] Returns an array of Localisation objects
 //     */

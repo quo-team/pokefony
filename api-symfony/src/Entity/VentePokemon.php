@@ -4,10 +4,8 @@ namespace App\Entity;
 
 use App\Repository\VentePokemonRepository;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: VentePokemonRepository::class)]
-#[ApiResource]
 class VentePokemon
 {
     #[ORM\Id]

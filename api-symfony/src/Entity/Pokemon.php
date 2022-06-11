@@ -5,11 +5,7 @@ namespace App\Entity;
 use App\Repository\PokemonRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-use ApiPlatform\Core\Annotation\ApiResource;
-
 #[ORM\Entity(repositoryClass: PokemonRepository::class)]
-#[ApiResource]
-
 class Pokemon
 {
     #[ORM\Id]
@@ -31,9 +27,6 @@ class Pokemon
 
     #[ORM\Column(type: 'datetime', nullable:true)]
     private $entrainement;
-
-    #[ORM\Column(type: 'boolean')]
-    private $chasse;
 
     #[ORM\Column(type: 'datetime', nullable:true)]
     private $date_chasse;
@@ -105,18 +98,6 @@ class Pokemon
     public function setEntrainement(\DateTimeInterface $entrainement): self
     {
         $this->entrainement = $entrainement;
-
-        return $this;
-    }
-
-    public function getChasse(): ?bool
-    {
-        return $this->chasse;
-    }
-
-    public function setChasse(bool $chasse): self
-    {
-        $this->chasse = $chasse;
 
         return $this;
     }

@@ -15,12 +15,14 @@ class TrainingController extends AbstractController
 {
     #[Route('/training', name: 'app_training')]
     public function index(EntityManagerInterface $em): Response
-    {   
-        $id_user = $_REQUEST['id_user'];
+    {  
+       
+        $id_user = $this->getUser("security.token_storage")->getId();
   
         $pokemons = $em->getRepository(Pokemon::class)->getPokemonDresseur($id_user);
         $nbPokemons  = count($pokemons);
-        return $this->render('training/index.html.twig', [
+  
+        return $this->render('training/listePokemon.html.twig', [
             'controller_name' => 'TrainingController',
             'pokemons' => $pokemons,
             'nbPokemons' => $nbPokemons,
