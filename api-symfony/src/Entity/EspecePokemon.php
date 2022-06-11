@@ -4,11 +4,8 @@ namespace App\Entity;
 
 use App\Repository\EspecePokemonRepository;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Core\Annotation\ApiResource;
 
 #[ORM\Entity(repositoryClass: EspecePokemonRepository::class)]
-#[ApiResource]
-
 class EspecePokemon
 {
     #[ORM\Id]
@@ -33,6 +30,9 @@ class EspecePokemon
 
     #[ORM\ManyToOne(targetEntity: TypePokemon::class)]
     private $type_2;
+
+    #[ORM\Column(type: 'string', length: 1000000)]
+    private $image;
 
     public function getId(): ?int
     {
@@ -107,6 +107,18 @@ class EspecePokemon
     public function setType2(?TypePokemon $type_2): self
     {
         $this->type_2 = $type_2;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

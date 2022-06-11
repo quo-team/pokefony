@@ -49,17 +49,34 @@ class EspecePokemonRepository extends ServiceEntityRepository
 
     public function getEspeceById($id){
 
+        return $this->createQueryBuilder('e')
+        ->andWhere('e.id = :id')
+        ->setParameter('id', $id)
+                   ->getQuery()
+                    ->getResult()
+                ;
+    } 
+
+    public function getAllEspece(){
+        
+        return $this->createQueryBuilder('e')
+                   ->getQuery()
+                    ->getResult();
+    }
+
+   /* public function getAllEspece(){
+
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = "
-            SELECT * FROM espece_pokemon WHERE id='$id'
+            SELECT * FROM espece_pokemon
             ";
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
 
         // returns an array of arrays (i.e. a raw data set)
-        return $resultSet->fetch();
-    }
+        return $resultSet->fetchAllAssociative();
+    } */
 
 //    /**
 //     * @return EspecePokemon[] Returns an array of EspecePokemon objects

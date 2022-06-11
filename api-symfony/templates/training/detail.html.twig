@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail du pokémon{% endblock %}
+
+{% block body %}
+ {{ parent() }}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1 style="text-align:center">Détail du pokémon </h1>
+                 <img style="float:right" width="450" height="400" src="{{ lePokemon.espece.image }}" alt="" />
+            <p>Nom : {{ lePokemon.nom}}</p>
+            <p>espèce : {{ lePokemon.espece.libelle }}</p>
+            <p>Xp : {{ lePokemon.xp}}</p>
+            <p>Sexe : {{ lePokemon.sexe}}</p>
+            <p>Niveau : {{ lePokemon.niveau}}</p>
+            <p>Dernier entrainement : {{ entrainementPokemon}}</p>
+            <p>Dernière date de chasse : {{ dateChasse}}</p>
+            <p>En vente : {{ ventePokemon}}</p>
+          {% if ventePokemon == 1 %}
+            <p style="color:red">Ce pokemon est en vente, impossible de l'entrainer<p>
+            {% elseif entrainementPossible == false %}
+              <p>Vous ne pouvez pas encore entrainer ce pokemon, revenez dans {{ tempsRestant}}</p>
+              {% else %}
+              <form method="POST" action="{{  path('app_detail', {'entrainement' : "oui"})}}">
+                <input name="id_du_pokemon" type="hidden" value="{{ lePokemon.id }}" />
+                  <input type="submit" value="entrainer">
+              </form>
+             
+          {% endif %}
+ 
+
+{% endblock %}

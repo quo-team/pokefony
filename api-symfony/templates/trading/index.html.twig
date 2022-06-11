@@ -1,29 +1,116 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TradingController!{% endblock %}
+{% block title %}Le marché des pokémons{% endblock %}
 
 {% block body %}
+ {{ parent() }}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+    table{
+        width:40%;
+    }
 </style>
-
+    <h1 style="text-align:center;">Le marché des pokémons</h1>
+<p>Vous avez {{app.user.pieces}} pièces</p>
 <div class="example-wrapper">
-    <h1>Le marché des pokemons</h1>
-<p>Vous avez {{app.user.pieces  }} pièces</p>
 </div>
-
-<table border="1">
+<div style="display:flex;">
+<div>
+<form  style="margin-left:5px;"     method="POST" action="{{ path('app_trading') }}">
+<table border="1" class="pure-table pure-table-bordered">
+    <h1>Mes pokémons</h1>
 <thead>
 <tr>
+<th></th>
 <th>Nom</th>
 <th>Espèce</th>
 <th>Niveau</th>
-<th>Expériences</th>
+<th>Xp</th>
 <th>Courbe de niveau</th>
-<th>Dresseur</th>
-<th>Prix</th>
+<th>Mettre / enlever de la vente</th>
+<th>Prix de vente</th>
 </tr>
 </thead>
+<tbody>
+{% if pokemonsNonVente is not empty %}
+ <tr><td colspan="8" style="text-align:center;">DISPONIBLES</td></tr> 
+{% endif %}
+   {% for p in pokemonsNonVente  %}
+   <tr>
+   <td><img width="50" src=" {{ p.espece.image }}" alt=""/></td>
+<td>{{ p.nom }}</td>
+<td>{{ p.espece.libelle }}</td>
+<td>{{ p.niveau }}</td>
+<td>{{ p.xp }}</td>
+<td>{{ p.espece.getTypeCourbeNiveau }}</td>
+<td><input type="checkbox" name="vendre_{{ p.id }}"></td>
+<td><input type="number" value="0" min="0" name="prix_{{ p.id }}"></td>
+
+   </tr>
+    {% endfor %}
+
+   {% if pokemonsVente is not empty %}
+ <tr><td colspan="8" style="text-align:center;">EN VENTE</td></tr> 
+{% endif %}
+    
+      {% for p in pokemonsVente  %}
+   <tr>
+    <td><img width="50" src=" {{ p.pokemon.espece.image }}" alt=""/></td>
+<td>{{ p.pokemon.nom }}</td>
+<td>{{ p.pokemon.espece.libelle }}</td>
+<td>{{ p.pokemon.niveau }}</td>
+<td>{{ p.pokemon.xp }}</td>
+<td>{{ p.pokemon.espece.getTypeCourbeNiveau }}</td>
+<td><input type="checkbox" name="retirer_{{ p.id }}"></td>
+<td>{{ p.prix }}</td>
+
+   </tr>
+    {% endfor %}
+
+
+    </tbody>
 </table>
+
+<input style="margin-top:5px;" class="pure-button" type="submit" name="valider_user" value="Valider">
+</form>
+</div>
+<div>
+<table border="1" class="pure-table pure-table-bordered">
+    <h1>Pokémons à vendre</h1>
+<thead>
+<tr>
+<th></th>
+<th>Nom</th>
+<th>Espèce</th>
+<th>Niveau</th>
+<th>Xp</th>
+<th>Courbe de niveau</th>
+<th>Prix</th>
+<th>Acheter</th>
+</tr>
+</thead>
+<tbody>
+ {% for p in pokemonsAllVente  %}
+<tr>
+ <td><img width="50" src=" {{ p.pokemon.espece.image }}" alt=""/></td>
+<td>{{ p.pokemon.nom }}</td>
+<td>{{ p.pokemon.espece.libelle }}</td>
+<td>{{ p.pokemon.niveau }}</td>
+<td>{{ p.pokemon.xp }}</td>
+<td>{{ p.pokemon.espece.getTypeCourbeNiveau }}</td>
+<td>{{ p.prix }} pièces</td>
+<form method="POST" action="{{ path('app_trading') }}">
+<td><input type="hidden" name="id_vente_pokemon" value="{{ p.id }}"  />
+ <input  class="pure-button" type="submit" value="Acheter" /></td>
+</form>
+</tr>
+   {% endfor %}
+
+</tbody>
+</table>
+</div>
+</div>
+
 {% endblock %}
