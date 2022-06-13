@@ -27,8 +27,36 @@ Créatif
 {: .label .label-green }
 
 Étudiant
-{: .label .label-yellow}
+{: .label .label-yellow }
 
 Curieux
-{: .label .label-pink}
+{: .label .label-red }
 
+## Samuel
+
+| Profil | Description | 
+| --- | --- |
+| Age | 13 ans |
+| Occupation | Étudiant |
+| Habite | Saint-Denis, Paris |
+| Education | 4e |
+
+### Biographie 
+
+Samuel vient d'une famille d'immigrées. Il n'a pas toujours la même culture que ses camardes de classe. Il a déjà un smartphone, mais n'a jamais eu l'occasion de jouer à un jeu Pokémon de sa vie. Ses amis lui conseillent d'essayer de jouer à un jeu Pokémon au moins une fois.
+
+### Personnalité
+
+Samuel est très attentif à son environnement. Il veut s'ouvrir sur les autres et comprendre aussi les centres d'intérêts de ses amis. Il est ouvert, mais souvent timide.
+
+Introverti 
+{: .label .label-blue }
+
+Analytique
+{: .label .label-green }
+
+Étudiant
+{: .label .label-yellow }
+
+Independant
+{: .label .label-red }
