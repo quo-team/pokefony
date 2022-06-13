@@ -100,14 +100,24 @@ class CaptureController extends AbstractController
         $pokemonChasse =   $em->getRepository(Pokemon::class)->getPokemonById($_POST['id_pokemon'])[0];
         $pokemonChasse -> setDateChasse(new DateTime($current_date));
         $tableauSexe = ["mâle","femelle"];
-        $especeChoisie = $tableauEspece[rand (5, count($tableauEspece) - 1)];
+        $tableau_nido = ["Nidoran♀","Nidorina","Nidoqueen","Nidoran♂️","Nidorino","Nidoking"];
+        $especeChoisie = $tableauEspece[rand (0, count($tableauEspece) - 1)];
         $newPokemon = new Pokemon();
         $newPokemon -> setEspece($especeChoisie);
         $newPokemon -> setNom($especeChoisie -> getLibelle());
         $newPokemon -> setXp(0);
-        $newPokemon -> setSexe($tableauSexe[rand(0,1)]);
+
+        if(!in_array($especeChoisie -> getLibelle(),$tableau_nido) ){
+            $newPokemon -> setSexe($tableauSexe[rand(0,1)]);
+        }else{
+            if($especeChoisie -> getLibelle() == "Nidoran♀" || $especeChoisie -> getLibelle() == "Nidorina" || $especeChoisie -> getLibelle() == "Nidoqueen"){
+                $newPokemon -> setSexe("femelle");
+            }else{
+                $newPokemon -> setSexe("mâle"); 
+            }
+        }
         $newPokemon -> setDresseur($user);
-        $newPokemon -> setNiveau(0);
+        $newPokemon -> setNiveau(1);
         $em->getRepository(Pokemon::class)->add($newPokemon,true);
 
         $pokemonChasse -> setDateChasse(new DateTime($current_date));

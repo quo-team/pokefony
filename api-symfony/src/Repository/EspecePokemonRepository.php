@@ -57,6 +57,15 @@ class EspecePokemonRepository extends ServiceEntityRepository
                 ;
     } 
 
+    public function getStarter(){
+
+        return $this->createQueryBuilder('e')
+        ->andWhere('e.starter = 1')
+                   ->getQuery()
+                    ->getResult()
+                ;
+    } 
+
     public function getAllEspece(){
         
         return $this->createQueryBuilder('e')
