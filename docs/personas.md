@@ -43,7 +43,7 @@ Curieux
 
 ### Biographie 
 
-Samuel vient d'une famille d'immigrées. Il n'a pas toujours la même culture que ses camardes de classe. Il a déjà un smartphone, mais n'a jamais eu l'occasion de jouer à un jeu Pokémon de sa vie. Ses amis lui conseillent d'essayer de jouer à un jeu Pokémon au moins une fois.
+Samuel vient d'une famille d'immigrées. Il n'a pas toujours la même culture que ses camarades de classe. Il a déjà un smartphone, mais n'a jamais eu l'occasion de jouer à un jeu Pokémon de sa vie. Ses amis lui conseillent d'essayer de jouer à un jeu Pokémon au moins une fois.
 
 ### Personnalité
 
