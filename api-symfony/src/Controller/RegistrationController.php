@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Pokemon;
+use App\Entity\EspecePokemon;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\AppCustomAuthenticator;
@@ -33,9 +35,22 @@ class RegistrationController extends AbstractController
             );
 
             $user->setPieces(5000);
-
+              //get pokemon starter aléatoire
+            $starter=  $entityManager->getRepository(EspecePokemon::class)->getStarter();
+            $lestarter =  $starter[rand (0, count($starter) - 1)];
+            $tableauSexe = ["mâle","femelle"];
+            $newPokemon = new Pokemon();
+            $newPokemon -> setEspece($lestarter);
+            $newPokemon -> setNom($lestarter -> getLibelle());
+            $newPokemon -> setXp(0);
+            $newPokemon -> setSexe($tableauSexe[rand(0,1)]);
+            $newPokemon -> setDresseur($user);
+            $newPokemon -> setNiveau(1);
+            
             $entityManager->persist($user);
+
             $entityManager->flush();
+            $entityManager->getRepository(Pokemon::class)->add($newPokemon,true);
             // do anything else you need here, like send an email
 
             return $userAuthenticator->authenticateUser(
