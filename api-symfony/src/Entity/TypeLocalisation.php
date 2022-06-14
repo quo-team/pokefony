@@ -2,12 +2,10 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TypeLocalisationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TypeLocalisationRepository::class)]
-#[ApiResource]
 class TypeLocalisation
 {
     #[ORM\Id]

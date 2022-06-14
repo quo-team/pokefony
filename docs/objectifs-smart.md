@@ -2,7 +2,7 @@
 nav_order : 4
 ---
 # Objectifs SMART
-<!-- Comment savoir que l’app change vraiment le monde? -->
+
 
 | Lettre | Description |
 | - | - |
@@ -33,3 +33,4 @@ Réaliser un site léger et récupérer des informations de différentes sources
 ## Temps
 
 Une première limite de temps a été imposé : celle de réaliser un Proof-of-Concept pour le 12 juin.
+

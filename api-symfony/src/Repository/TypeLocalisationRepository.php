@@ -47,6 +47,16 @@ class TypeLocalisationRepository extends ServiceEntityRepository
         }
     }
 
+    public function getTypeLocalisationByIdLocalisation($id_localisation){
+
+        return $this->createQueryBuilder('t')
+        ->andWhere('t.localisation = :id')
+        ->setParameter('id', $id_localisation)
+                   ->getQuery()
+                    ->getResult()
+                ;
+    }
+
 //    /**
 //     * @return TypeLocalisation[] Returns an array of TypeLocalisation objects
 //     */

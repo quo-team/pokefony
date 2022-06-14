@@ -47,45 +47,26 @@ class PokemonRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
+
     public function getPokemonDresseur ($id){
 
-        $conn = $this->getEntityManager()->getConnection();
-
-        $sql = '
-            SELECT * FROM pokemon
-            ';
-        $stmt = $conn->prepare($sql);
-        $resultSet = $stmt->executeQuery();
-
-        // returns an array of arrays (i.e. a raw data set)
-        return $resultSet->fetchAllAssociative();
+        return $this->createQueryBuilder('p')
+        ->andWhere('p.dresseur = :id')
+        ->setParameter('id', $id)
+                   ->getQuery()
+                    ->getResult()
+                ;
     }
 
     public function getPokemonById($id){
 
-        $conn = $this->getEntityManager()->getConnection();
-
-        $sql = "
-            SELECT * FROM pokemon where id=$id
-            ";
-        $stmt = $conn->prepare($sql);
-        $resultSet = $stmt->executeQuery();
-
-        // returns an array of arrays (i.e. a raw data set)
-        return $resultSet->fetch();
+        return $this->createQueryBuilder('p')
+        ->andWhere('p.id = :id')
+        ->setParameter('id', $id)
+                   ->getQuery()
+                    ->getResult()
+                ;
     }
-
-    public function updatePokemonEntrainement($id, $date, $niveau,$xp){
-        
-        $conn = $this->getEntityManager()->getConnection();
-
-        $sql = "
-           UPDATE pokemon SET entrainement='$date', xp='$xp', niveau='$niveau' WHERE id='$id'
-            ";
-        $stmt = $conn->prepare($sql);
-        $resultSet = $stmt->executeQuery();
-    }
-
 
 }
 
